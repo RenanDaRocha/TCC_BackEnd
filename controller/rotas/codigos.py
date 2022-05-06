@@ -24,7 +24,7 @@ def setCodigos():
         DIFICULDADE = item.get('DIFICULDADE')
         
         sql = f"""
-            UPDATE OR INSERT INTO CONTAS (
+            UPDATE OR INSERT INTO CODIGOS (
                 DESCRICAO,
                 RESPOSTA,
                 DIFICULDADE
