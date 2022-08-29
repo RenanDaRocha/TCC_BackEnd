@@ -3,14 +3,21 @@ from flask import request
 from controller.fb_control import get_select_json
 from controller.fb_control import get_conexao
 
-def executar(code, resposta):
-    retorno = ''
+def executar():
+    print('foi')
+    CODIGO = request.json.get('CODIGO')
+    RESPOSTA = request.json.get('RESPOSTA')
+    RETORNO = ''
+    print(CODIGO)
+    print(RESPOSTA)
+
     try:
-        if eval(code) == eval(resposta):
-            retorno = 'C'
+        if eval(CODIGO) == eval(RESPOSTA):
+            RETORNO = 'C'
         else:
-            retorno = 'D'
+            RETORNO = 'D'
     except:
-        retorno= 'E'
-    return (retorno)
+        RETORNO= 'E'
+    print(RETORNO)
+    return (RETORNO)
     
