@@ -35,8 +35,8 @@ def get_Concluido(usuario):
     return getConcluido(usuario)
 
 @app.route('/concluidoaluno/<id>')
-def get_Concluido_Alunos(ID):
-    return getConcluidoAlunos(ID)
+def get_Concluido_Alunos(id):
+    return getConcluidoAlunos(id)
 
 @app.route('/enviarconcluido', methods=["POST"])
 def set_Concluido():
