@@ -9,7 +9,8 @@ def getLogin():
             ID,
             LOGIN, 
             SENHA,
-            NOME
+            NOME,
+            TIPO
         FROM LOGIN
         """
     , True)
@@ -19,16 +20,19 @@ def setLogin():
     LOGIN = request.json.get('LOGIN')
     SENHA = request.json.get('SENHA')
     NOME  = request.json.get('NOME')
+    TIPO  = request.json.get('TIPO')
         
     sql = f"""
         UPDATE OR INSERT INTO LOGIN (
             LOGIN,
             SENHA,
-            NOME
+            NOME,
+            TIPO
         ) VALUES (
             '{LOGIN}',
             '{SENHA}',
-            '{NOME}'
+            '{NOME}',
+            '{TIPO}'
         )
         MATCHING (LOGIN)
     """

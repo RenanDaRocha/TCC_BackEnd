@@ -5,8 +5,8 @@ def get_conexao():
     try:
         return fdb.connect(
             host="127.0.0.1",
-            port=3053,
-            database="C:\SGW\Dados\ArribaMobile\BANCO.FDB",
+            port=3050,
+            database="C:\TCC_BackEnd\Banco\BANCO.FDB",
             user="SYSDBA",
             password="masterkey"
         )

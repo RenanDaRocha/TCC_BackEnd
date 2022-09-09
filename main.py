@@ -3,8 +3,8 @@ from flask_cors import CORS
 import os
 # internos
 from controller.rotas.login import getLogin, setLogin
-from controller.rotas.codigos import getCodigos, setCodigos
-from controller.rotas.concluido import getConcluido, setConcluido
+from controller.rotas.codigos import getCodigos, getCodigosUsuario, setCodigos
+from controller.rotas.concluido import getConcluido, getConcluidoAlunos, setConcluido
 from controller.rotas.executar import executar
 
 app = Flask(__name__)
@@ -18,19 +18,25 @@ def get_Login():
 def set_Login():
     return setLogin()
 
-
 @app.route('/codigos/<dificuldade>')
 def get_Codigos(dificuldade):
     return getCodigos(dificuldade)
+
+@app.route('/codigosusuario/<usuario>')
+def get_Codigos_Usuario(usuario):
+    return getCodigosUsuario(usuario)
 
 @app.route('/enviarcodigos', methods=["POST"])
 def set_Codigos():
     return setCodigos()
 
-
 @app.route('/concluido/<usuario>')
 def get_Concluido(usuario):
     return getConcluido(usuario)
+
+@app.route('/concluidoaluno/<id>')
+def get_Concluido_Alunos(ID):
+    return getConcluidoAlunos(ID)
 
 @app.route('/enviarconcluido', methods=["POST"])
 def set_Concluido():

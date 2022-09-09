@@ -12,6 +12,20 @@ def getConcluido(usuario):
         """
     , True)
 
+def getConcluidoAlunos(ID):
+
+    return get_select_json(
+        f"""
+        SELECT
+            L.NOME,
+            CC.DATA
+        FROM CONCLUIDOS CC
+        LEFT JOIN CODIGOS CD ON (CD.ID = CC.ID_CODIGO)
+        LEFT JOIN LOGIN L ON (L.ID = CC.ID_USUARIO)
+        WHERE CD.ID = ({ID})
+        """
+    , True)
+
 def setConcluido():
     conexao = get_conexao()
 
