@@ -34,9 +34,9 @@ def set_Codigos():
 def get_Concluido(usuario):
     return getConcluido(usuario)
 
-@app.route('/concluidoaluno/<id>')
-def get_Concluido_Alunos(id):
-    return getConcluidoAlunos(id)
+@app.route('/concluidoaluno/<codigo>/<usuario>')
+def get_Concluido_Alunos(codigo, usuario):
+    return getConcluidoAlunos(codigo, usuario)
 
 @app.route('/enviarconcluido', methods=["POST"])
 def set_Concluido():

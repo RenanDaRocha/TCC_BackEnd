@@ -12,7 +12,7 @@ def getConcluido(usuario):
         """
     , True)
 
-def getConcluidoAlunos(ID):
+def getConcluidoAlunos(codigo, usuario):
 
     return get_select_json(
         f"""
@@ -22,7 +22,8 @@ def getConcluidoAlunos(ID):
         FROM CONCLUIDOS CC
         LEFT JOIN CODIGOS CD ON (CD.ID = CC.ID_CODIGO)
         LEFT JOIN LOGIN L ON (L.ID = CC.ID_USUARIO)
-        WHERE CD.ID = ({ID})
+        WHERE CD.ID = ({codigo})
+          AND CD.ID_USUARIO = ({usuario})
         """
     , True)
 
