@@ -3,7 +3,6 @@ from controller.fb_control import get_select_json
 from controller.fb_control import get_conexao
 
 def getConcluido(usuario):
-
     return get_select_json(
         f"""
         SELECT 
@@ -21,7 +20,7 @@ def getConcluidoAlunos(codigo, usuario):
             CC.DATA
         FROM CONCLUIDOS CC
         LEFT JOIN CODIGOS CD ON (CD.ID = CC.ID_CODIGO)
-        LEFT JOIN LOGIN L ON (L.ID = CC.ID_USUARIO)
+        LEFT JOIN USUARIO U ON (U.ID = CC.ID_USUARIO)
         WHERE CD.ID = ({codigo})
           AND CD.ID_USUARIO = ({usuario})
         """

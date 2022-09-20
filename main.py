@@ -2,7 +2,7 @@ from flask import Flask, request#, render_template, redirect, request, abort, js
 from flask_cors import CORS
 import os
 # internos
-from controller.rotas.login import getLogin, setLogin
+from controller.rotas.login import login, setUsuario
 from controller.rotas.codigos import getCodigos, getCodigosUsuario, setCodigos
 from controller.rotas.concluido import getConcluido, getConcluidoAlunos, setConcluido
 from controller.rotas.executar import executar
@@ -10,13 +10,13 @@ from controller.rotas.executar import executar
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/login')
-def get_Login():
-    return getLogin()
+@app.route('/login', methods=["POST"])
+def Login():
+    return login()
 
-@app.route('/enviarlogin', methods=["POST"])
-def set_Login():
-    return setLogin()
+@app.route('/enviarusuario', methods=["POST"])
+def set_Usuario():
+    return setUsuario()
 
 @app.route('/codigos/<dificuldade>')
 def get_Codigos(dificuldade):
