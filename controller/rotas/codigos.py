@@ -25,7 +25,12 @@ def getCodigosUsuario(usuario):
         f"""
         SELECT
             ID,
-            TITULO
+            TITULO,
+            DESCRICAO,
+            RESPOSTA,
+            DIFICULDADE,
+            TRECHO,
+            TRECHO2
         FROM CODIGOS
         WHERE ID_USUARIO = ({usuario})
         """

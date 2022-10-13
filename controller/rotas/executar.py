@@ -1,4 +1,5 @@
-import subprocess
+from distutils.log import error
+import subprocess, os
 from sre_compile import isstring
 from flask import request
 from controller.fb_control import get_select_json
@@ -34,8 +35,14 @@ else:
         if RESPOSTA == arquivoResp.readlines()[0]:
             RETORNO = 'V'
         else:
-            RETORNO = 'F'          
+            RETORNO = 'F' 
+        arquivoResp.close()
+
+        if os.path.exists(f"codigos/resposta_{ID_USUARIO}.txt"):
+            os.remove(f"codigos/resposta_{ID_USUARIO}.txt")
+                 
     except:
         RETORNO= 'ERRO'
+        print('error')
     return (RETORNO)
     

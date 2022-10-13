@@ -19,7 +19,8 @@ def login():
             LOGIN,
             SENHA,
             NOME,
-            NIVEL
+            NIVEL,
+            DISCIPLINA
         FROM USUARIO
         WHERE LOGIN = '{LOGIN}'
         {TRECHO}

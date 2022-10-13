@@ -12,11 +12,13 @@ def getConcluido(usuario):
     , True)
 
 def getConcluidoAlunos(codigo, usuario):
+    print(codigo)
+    print(usuario)
 
     return get_select_json(
         f"""
         SELECT
-            L.NOME,
+            U.NOME,
             CC.DATA
         FROM CONCLUIDOS CC
         LEFT JOIN CODIGOS CD ON (CD.ID = CC.ID_CODIGO)
@@ -31,22 +33,7 @@ def setConcluido():
 
     ID_USUARIO = request.json.get('ID_USUARIO')
     ID_CODIGO  = request.json.get('ID_CODIGO')
-    DATA       = request.json.get('DATA')
         
-    sql = f"""
-        UPDATE OR INSERT INTO CONCLUIDOS (
-            ID_USUARIO,
-            ID_CODIGO,
-            DATA
-        ) VALUES (
-            {ID_USUARIO},
-            {ID_CODIGO},
-            '{DATA}'
-        )
-        MATCHING (ID_USUARIO, ID_CODIGO)
-    """
-
-    conexao.execute_immediate(sql)
-
+    conexao.execute_immediate(f"execute procedure SP_CODIGOCONCLUIDO({ID_USUARIO},{ID_CODIGO})")
     conexao.commit()
     return "Concluido atualizados/inseridos com sucesso"
