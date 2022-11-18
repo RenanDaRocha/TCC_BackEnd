@@ -12,7 +12,10 @@ def getCodigos(dificuldade):
             RESPOSTA,
             DIFICULDADE,
             TRECHO,
-            TRECHO2
+            TRECHO2,
+            TEMPO1,
+            TEMPO2,
+            TEMPO3
         FROM CODIGOS
         WHERE DIFICULDADE = '{dificuldade}'
         ORDER BY DIFICULDADE, ID
@@ -30,7 +33,10 @@ def getCodigosUsuario(usuario):
             RESPOSTA,
             DIFICULDADE,
             TRECHO,
-            TRECHO2
+            TRECHO2,
+            TEMPO1,
+            TEMPO2,
+            TEMPO3
         FROM CODIGOS
         WHERE ID_USUARIO = ({usuario})
         """
@@ -46,6 +52,9 @@ def setCodigos():
     TRECHO1     = request.json.get('TRECHO1')
     TRECHO2     = request.json.get('TRECHO2')
     ID_USUARIO     = request.json.get('USUARIO')
+    TEMPO1     = request.json.get('TEMPO1')
+    TEMPO2     = request.json.get('TEMPO2')
+    TEMPO3     = request.json.get('TEMPO3')
     
     sql = f"""
         UPDATE OR INSERT INTO CODIGOS (
@@ -55,7 +64,10 @@ def setCodigos():
             DIFICULDADE,
             TRECHO,
             TRECHO2,
-            ID_USUARIO
+            ID_USUARIO,
+            TEMPO1,
+            TEMPO2,
+            TEMPO3
         ) VALUES (
             '{TITULO}',
             '{DESCRICAO}',
@@ -63,7 +75,10 @@ def setCodigos():
             {DIFICULDADE},
             '{TRECHO1}',
             '{TRECHO2}',
-            {ID_USUARIO}
+            {ID_USUARIO},
+            {TEMPO1},
+            {TEMPO2},
+            {TEMPO3}
         )
         MATCHING (TITULO, ID_USUARIO)
     """

@@ -11,9 +11,39 @@ def getConcluido(usuario):
         """
     , True)
 
+def getConcluidoRanking():
+    return get_select_json(
+        f"""
+        SELECT
+            U.NOME,
+            R.CADTOTALRESOL AS TOTAL,
+            R.CADTOTAL1RESOL AS FACIL,
+            R.CADTOTAL2RESOL AS MEDIO,
+            R.CADTOTAL3RESOL AS DIFICIL
+        FROM USUARIO U
+        LEFT JOIN RESOLVIDOS(U.ID) R ON (0=0)
+        WHERE R.CADTOTALRESOL > 0
+        ORDER BY TOTAL DESC, R.ULTIMO
+        """
+    , True) 
+
+def getConcluidoRankingPonto():
+    return get_select_json(
+        f"""
+        SELECT
+            U.NOME,
+            R.PONTOSTOTAL AS TOTAL,
+            R.PONTOSFACIL AS FACIL,
+            R.PONTOSMEDIO AS MEDIO,
+            R.PONTOSDIFICIL AS DIFICIL
+        FROM USUARIO U
+        LEFT JOIN RESOLVIDOS(U.ID) R ON (0=0)
+        WHERE R.CADTOTALRESOL > 0
+        ORDER BY TOTAL DESC, R.ULTIMO
+        """
+    , True) 
+
 def getConcluidoAlunos(codigo, usuario):
-    print(codigo)
-    print(usuario)
 
     return get_select_json(
         f"""
@@ -33,7 +63,8 @@ def setConcluido():
 
     ID_USUARIO = request.json.get('ID_USUARIO')
     ID_CODIGO  = request.json.get('ID_CODIGO')
+    PONTO      = request.json.get('PONTO')
         
-    conexao.execute_immediate(f"execute procedure SP_CODIGOCONCLUIDO({ID_USUARIO},{ID_CODIGO})")
+    conexao.execute_immediate(f"execute procedure SP_CODIGOCONCLUIDO({ID_USUARIO},{ID_CODIGO},{PONTO})")
     conexao.commit()
     return "Concluido atualizados/inseridos com sucesso"

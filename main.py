@@ -4,7 +4,7 @@ import os
 # internos
 from controller.rotas.login import login, setUsuario
 from controller.rotas.codigos import getCodigos, getCodigosUsuario, setCodigos
-from controller.rotas.concluido import getConcluido, getConcluidoAlunos, setConcluido
+from controller.rotas.concluido import getConcluido, getConcluidoRanking, getConcluidoRankingPonto, getConcluidoAlunos, setConcluido
 from controller.rotas.executar import executar
 
 app = Flask(__name__)
@@ -33,6 +33,14 @@ def set_Codigos():
 @app.route('/concluido/<usuario>')
 def get_Concluido(usuario):
     return getConcluido(usuario)
+
+@app.route('/concluidoranking')
+def get_Concluido_Ranking():
+    return getConcluidoRanking()
+
+@app.route('/concluidorankingponto')
+def get_Concluido_Ranking_Ponto():
+    return getConcluidoRankingPonto()
 
 @app.route('/concluidoaluno/<codigo>/<usuario>')
 def get_Concluido_Alunos(codigo, usuario):
